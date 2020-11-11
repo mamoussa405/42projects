@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: ftps-deployment
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: ftp
+    template:
+        metadata:
+            labels:
+                app: ftp
+        spec:
+            restartPolicy: Always
+            containers:
+                - name: ftps
+                  imagePullPolicy: Never
+                  image: ftpserver:latest
+                  ports:
+                  - containerPort: 21
+                  - containerPort: 28000
+                  - containerPort: 28001
+                  - containerPort: 28002
+                  - containerPort: 28003
+                  - containerPort: 28004
+                  - containerPort: 28005
+                  - containerPort: 28006
+                  - containerPort: 28007
+                  - containerPort: 28008
+                  - containerPort: 28009
+                  volumeMounts:
+                  - mountPath: /home/mamoussa
+                    name: ftp-volume
+            volumes:
+            - name: ftp-volume
+              hostPath:
+                 path: /data/ftp
+                 type: Directory
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: ftp-service
+spec:
+    type: NodePort
+    selector:
+       app: ftp
+    ports:
+    - port: 21
+      targetPort: 21
+      nodePort: 21
+      name: ftps
+    - port: 28000
+      targetPort: 28000
+      nodePort: 28000
+      name: ftpsp1
+    - port: 28001
+      targetPort: 28001
+      nodePort: 28001
+      name: ftpsp2
+    - port: 28002
+      targetPort: 28002
+      nodePort: 28002
+      name: ftpsp3
+    - port: 28003
+      targetPort: 28003
+      nodePort: 28003
+      name: ftpsp4
+    - port: 28004
+      targetPort: 28004
+      nodePort: 28004
+      name: ftpsp5
+    - port: 28005
+      targetPort: 28005
+      nodePort: 28005
+      name: ftpsp6
+    - port: 28006
+      targetPort: 28006
+      nodePort: 28006
+      name: ftpsp7
+    - port: 28007
+      targetPort: 28007
+      nodePort: 28007
+      name: ftpsp8
+    - port: 28008
+      targetPort: 28008
+      nodePort: 28008
+      name: ftpsp9
+    - port: 28009
+      targetPort: 28009
+      nodePort: 28009
+      name: ftpsp10

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+        name: influxdb-deployment
+spec:
+    replicas: 1
+    selector:
+            matchLabels:
+                 app: influx
+    template:
+            metadata:
+                labels:
+                   app: influx
+            spec:
+                restartPolicy: Always
+                containers:
+                  - name: influxdb
+                    imagePullPolicy: Never
+                    image: influx:latest
+                    ports:
+                      - containerPort: 8086
+                    volumeMounts:
+                      - mountPath: /var/run/docker.sock
+                        name: telegraf-volume
+                      - mountPath: /var/lib/influxdb
+                        name: influxdb-volume
+                volumes:
+                  - name: telegraf-volume
+                    hostPath:
+                       path: /var/run/docker.sock
+                  - name: influxdb-volume
+                    hostPath:
+                       path: /data/influxdb
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: influxdb
+spec:
+  ports:
+    - port: 8086
+  selector:
+    app: influx

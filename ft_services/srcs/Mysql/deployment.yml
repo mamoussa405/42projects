@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+        name: mysql-deployment
+spec:
+    replicas: 1
+    selector:
+            matchLabels:
+                 app: mysql
+    template:
+            metadata:
+                labels:
+                   app: mysql
+            spec:
+                restartPolicy: Always
+                containers:
+                  - name: mysql
+                    imagePullPolicy: Never
+                    image: mysql:latest
+                    ports:
+                      - containerPort: 3306
+                    volumeMounts:
+                      - mountPath: /var/lib/mysql
+                        name: mysql-volume
+                volumes:
+                  - name: mysql-volume
+                    hostPath:
+                       path: /data/mysql
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-servic
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: mysql
+  clusterIP: 10.99.99.99
