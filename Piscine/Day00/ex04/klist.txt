@@ -1,0 +1,5 @@
+Credentials cache: API:1788
+        Principal: mamoussa@1337.MA
+
+  Issued                Expires               Principal
+Aug 19 23:10:06 2019  Aug 26 23:08:36 2019  krbtgt/1337.MA@1337.MA
