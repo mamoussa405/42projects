@@ -60,7 +60,7 @@ void	check_for_abspath_helper(char **res, char **args
 	simple_pointer_free((g_cmd_head->string));
 	g_cmd_head->string = ft_strdup(res[0]);
 	args = set_args(counter);
-	execve(args[0], args, NULL);
+	execve(args[0], args, g_tmp_env);
 	g_tmp = g_cmd_head->string;
 	g_cmd_head->string = ft_strdup(cmd);
 	simple_pointer_free(g_tmp);
@@ -83,7 +83,7 @@ size_t	check_for_abspath(size_t counter)
 		if (!ft_strncmp(res[i], cmd, ft_strlen(res[i])))
 		{
 			args = set_args(counter);
-			execve(args[0], args, NULL);
+			execve(args[0], args, g_tmp_env);
 			double_pointer_free(args);
 		}
 		else
@@ -95,11 +95,10 @@ size_t	check_for_abspath(size_t counter)
 	return (1);
 }
 
-void	ft_not_builtin(void)
+void	ft_not_builtin()
 {
 	pid_t	pid;
 	int		status;
-	size_t	ret;
 	size_t	counter;
 
 	counter = args_count();
@@ -107,9 +106,11 @@ void	ft_not_builtin(void)
 		exit(0);
 	if (pid == 0)
 	{
-		ret = check_for_abspath(counter);
 		if (check_for_abspath(counter))
+		{
 			ft_error("command not found\n");
+			exit(0);
+		}
 	}
 	else
 		wait(&status);

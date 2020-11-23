@@ -46,8 +46,9 @@ void	input_out_red()
 			//check for file permessions first
 			g_out_fd = open(current->string, O_CREAT | O_WRONLY | O_TRUNC);
 			//check the errors if g_out_fd  < 0
+			int tmp = dup(g_out_fd);	
 			dup2(g_out_fd, 1);
-			close(g_out_fd);
+			close(tmp);
 		}
 		else if (current->type == append_output)
 		{
@@ -72,13 +73,12 @@ void	ft_echo_helper(void)
 	size_t	is_n;
 
 	is_n = 0;
-	is_n = check_for_n();
 	g_cmd_head = g_cmd_head->next;
 	input_out_red();
 	if (!g_cmd_head || (g_cmd_head->type == semicolumn) || (g_cmd_head->type == pipee))
 	{
 		write(1, "\n", 1);
-		return ;
+		exit(0);
 	}
 	is_n = check_for_n();
 	if (is_n)
@@ -92,17 +92,18 @@ void	ft_echo_helper(void)
 	}
 	if (!is_n)
 		write(1, "\n", 1);
+	exit(0);
 }
 
 void	ft_echo()
 {
-	// pid_t	pid;
-	// int		status;
+	pid_t	pid;
+	int		status;
 
-	// if ((pid = fork()) < 0)
-	// 	return ;
-	// if (pid == 0)
+	if ((pid = fork()) < 0)
+		return ;
+	if (pid == 0)
 		ft_echo_helper();
-	// else
-	// 	wait(&status);
+	else
+		wait(&status);
 }

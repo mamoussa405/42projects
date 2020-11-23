@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   str_cpy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 12:01:10 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/11/23 11:30:31 by mamoussa         ###   ########.fr       */
+/*   Created: 2020/11/22 11:14:55 by mamoussa          #+#    #+#             */
+/*   Updated: 2020/11/22 11:15:09 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void	ft_error(const char* error)
+void    str_cpy(char **dst, char** src)
 {
-	write(1, "bash: ", ft_strlen("bash: "));
-	write(1, error, ft_strlen(error));
+    size_t  i;
+    size_t  j;
+
+    i = 0;
+    j = 0;
+    while (src[0][i])
+    {
+        if (src[0][i] == '~')
+        {
+            i++;
+            continue; 
+        }
+        dst[0][j++]= src[0][i++];
+    }
+    src[0][j] = '\0';
 }

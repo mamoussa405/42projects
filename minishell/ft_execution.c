@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 12:54:49 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/11/21 11:19:22 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/11/23 16:46:22 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_not_command(void)
 {
 
 }
-void	ft_execution(void)
+void	ft_execution()
 {
 	while (g_cmd_head)
 	{
@@ -34,11 +34,12 @@ void	ft_execution(void)
 				ft_export();
 			else if (!ft_strncmp(g_cmd_head->string, "env", ft_strlen("env")))
 				ft_env();
-			else
+			else if (!ft_strncmp(g_cmd_head->string, "exit", ft_strlen("exit")))
 			{
-				printf("hello\n");
-				ft_not_builtin();
+				ft_exit();
 			}
+			else
+				ft_not_builtin();
 		}
 		else
 			ft_not_command();

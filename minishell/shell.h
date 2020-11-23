@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 20:08:51 by mbani             #+#    #+#             */
-/*   Updated: 2020/11/21 11:04:41 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/11/23 11:12:27 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "get_next_line.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+#include <errno.h>
 
 typedef struct		s_env
 {
@@ -46,13 +48,12 @@ typedef struct s_expan
 t_env	*g_env_head;
 t_cmd	*g_cmd_head;
 char	*g_tmp;
+char	**g_tmp_env;
 size_t	g_is_out_app;
 size_t	g_is_out;
 size_t	g_is_int;
 int		g_int_fd;
 int		g_out_fd;
-int		fdtmp;
-int		fdtmp2;
 t_env	*ft_lstnewenv(char *key, char *value);
 void	ft_lstadd_backenv(t_env **alst, t_env *new);
 void	ft_lstclearenv(t_env **lst);
@@ -71,5 +72,10 @@ void	ft_unset(void);
 char	**path_spliter(void);
 void	simple_pointer_free(char *ptr);
 void	double_pointer_free(char **ptr);
+void	str_cpy(char **dst, char **src);
+size_t	ft_cd_helper(void);
+char	*check_for_home(void);
+void	cpy_env(char **envp);
+void	ft_exit(void);
 
 #endif

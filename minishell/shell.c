@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 17:54:10 by mbani             #+#    #+#             */
-/*   Updated: 2020/11/18 18:04:18 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/11/23 17:16:43 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,12 +216,12 @@ static	int g_x;
 int		add_to_list_bulk(char **tmp, char **op, int *i, int *j)
 {
 	enum e_type t;
-
 	if (g_x == 0 || g_x == -100020)
 		t = cmd;
 	else
 		t = arg;
-	if (g_x == 0 && !*tmp[0] && (op[0][0] == '<' || op[0][0] == '>'))
+	if (g_x == 0 && !*tmp[0] && (op[0][0] == '<' || op[0][0] == '>' ||
+	(op[0][0] == '>' && op[0][1] == '>')))
 		g_x = -100000;
 	if (*tmp[0])
 		add_to_list(tmp, t);
@@ -471,7 +471,6 @@ void	quote_removal(char **str)
 	int		i;
 	char	*tmp;
 	char	*temp;
-
 	quote_removal_init(&quote, &tmp, &temp, &i);
 	while (str[0][i])
 	{
@@ -480,7 +479,9 @@ void	quote_removal(char **str)
 		if (str[0][i] == '\\' && quote.sng != 1)
 			rm_backslash(&temp, str, &tmp, &i);
 		else if ((str[0][i] == '\'' && quote.dbl != 1)
-		|| (str[0][i] == '\"' && quote.sng != 1))
+		|| (str[0][i] == '\"' && quote.sng != 1) ||
+		(str[0][i] == '$' && quote.dbl != 1 && quote.sng != 1 &&
+		(str[0][i + 1] == '\'' || str[0][i + 1] == '\"')))
 		{
 			i++;
 			continue ;
@@ -537,6 +538,7 @@ int		main(int argc, char  **argv, char **envp)
 
 	(void) argc;
 	(void) argv;
+	cpy_env(envp);
 	env_var(envp);
 	while (1)
 	{
@@ -545,13 +547,15 @@ int		main(int argc, char  **argv, char **envp)
 		if (!ret)
 			break ;
 		line_parser(line);
-		ft_execution();
 		tmp = g_cmd_head;
+		ft_execution();
 		if (tmp)
 			ft_lstclearcmd(&tmp);
 		free(line);
 	}
 	free(line);
 	ft_lstclearenv(&g_env_head);/* free env var  */
+	if (g_tmp_env)
+		double_pointer_free(g_tmp_env);
 	return (0);
 }
