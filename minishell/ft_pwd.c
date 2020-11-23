@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 12:45:49 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/11/22 18:21:40 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/11/23 17:34:03 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ void	ft_pwd(void)
     }
     write(1, buf, ft_strlen(buf));
     write(1, "\n", 1);
-    free(buf);
+    simple_pointer_free(buf);
 }

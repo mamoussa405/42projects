@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 12:43:12 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/11/22 17:36:49 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/11/23 17:29:53 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void    path_checker(void)
             g_tmp = g_cmd_head->string;
             g_cmd_head->string = ft_strjoin(current->value,
             g_cmd_head->string);
-            free(g_tmp);
+            simple_pointer_free(g_tmp);
             break;
         }
         current = current->next;
@@ -41,10 +41,10 @@ void    check_for_tilde(void)
     str_cpy(&str, &strtmp);
     g_tmp = g_cmd_head->string;
     g_cmd_head->string = ft_strdup(str);
-    free(g_tmp);
+    simple_pointer_free(g_tmp);
     path_checker();
-    free(str);
-    free(strtmp);
+    simple_pointer_free(str);
+    simple_pointer_free(strtmp);
 }
 
 char    *check_for_home(void)
