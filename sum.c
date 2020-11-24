@@ -7,6 +7,6 @@ int main(void)
 	scanf("%d", &a); // enregistrer le nombre a
 	printf("donnez b:\n"); //afficher un message a l'utilisateur pour entrer b
 	scanf("%d", &b);// enregistrer le nombre b
-	printf("la somme est: %d\n", a+b); // faire l'equation a+b et afficher la somme
+	printf("la somme est: %d\n", a+b); // faire l'equation a+b et afficher le resultat
 	return 0;
 }
