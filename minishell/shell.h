@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 20:08:51 by mbani             #+#    #+#             */
-/*   Updated: 2020/11/23 11:12:27 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/11/24 16:47:23 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_cd(void);
 void	ft_echo(void);
 void	ft_env(void);
 void	ft_error(const char *error);
-void	ft_execution(void);
+void	ft_execution(char *line, t_cmd *tmp);
 void	ft_export(void);
 void	ft_not_builtin(void);
 void	ft_pwd(void);
@@ -76,6 +76,7 @@ void	str_cpy(char **dst, char **src);
 size_t	ft_cd_helper(void);
 char	*check_for_home(void);
 void	cpy_env(char **envp);
-void	ft_exit(void);
+void	ft_exit(char *line, t_cmd *tmp);
+void	print_in_sort(void);
 
 #endif

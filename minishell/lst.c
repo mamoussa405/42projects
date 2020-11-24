@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 20:12:47 by mbani             #+#    #+#             */
-/*   Updated: 2020/11/11 14:08:35 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/11/24 12:19:11 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,11 @@ void	ft_lstclearenv(t_env **lst)
 	{
 		tmp = (*lst)->next;
 		free((*lst)->key);
+		(*lst)->key = NULL;
 		free((*lst)->value);
+		(*lst)->value = NULL;
 		free(*lst);
+		*lst = NULL;
 		*lst = tmp;
 	}
 }
@@ -64,7 +67,9 @@ void	ft_lstclearcmd(t_cmd **lst)
 	{
 		tmp = (*lst)->next;
 		free((*lst)->string);
+		(*lst)->string = NULL;
 		free(*lst);
+		*lst = NULL;
 		*lst = tmp;
 	}
 }

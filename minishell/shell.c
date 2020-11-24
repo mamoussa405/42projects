@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 17:54:10 by mbani             #+#    #+#             */
-/*   Updated: 2020/11/23 17:16:43 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/11/24 12:28:31 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -548,7 +548,7 @@ int		main(int argc, char  **argv, char **envp)
 			break ;
 		line_parser(line);
 		tmp = g_cmd_head;
-		ft_execution();
+		ft_execution(line, tmp);
 		if (tmp)
 			ft_lstclearcmd(&tmp);
 		free(line);

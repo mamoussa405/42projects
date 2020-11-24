@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 12:54:49 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/11/23 16:46:22 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/11/24 12:25:29 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	ft_not_command(void)
 {
 
 }
-void	ft_execution()
+
+void	ft_execution(char *line, t_cmd *tmp)
 {
 	while (g_cmd_head)
 	{
@@ -36,7 +37,7 @@ void	ft_execution()
 				ft_env();
 			else if (!ft_strncmp(g_cmd_head->string, "exit", ft_strlen("exit")))
 			{
-				ft_exit();
+				ft_exit(line, tmp);
 			}
 			else
 				ft_not_builtin();

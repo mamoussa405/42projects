@@ -57,8 +57,10 @@ void	check_for_abspath_helper(char **res, char **args
 	g_tmp = res[0];
 	res[0] = ft_strjoin(res[0], cmd);
 	simple_pointer_free(g_tmp);
-	simple_pointer_free((g_cmd_head->string));
+	//simple_pointer_free((g_cmd_head->string));
+	g_tmp = g_cmd_head->string;
 	g_cmd_head->string = ft_strdup(res[0]);
+	simple_pointer_free(g_tmp);
 	args = set_args(counter);
 	execve(args[0], args, g_tmp_env);
 	g_tmp = g_cmd_head->string;
