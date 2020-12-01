@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 16:15:07 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/11/24 16:49:01 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/11/28 14:46:08 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ int     key_compariason(char *head_key, char *cur_key)
     return (0);
 }
 
-void    node_sort(void)
+void    node_sort(t_env *head_cpy)
 {
     t_env   *head;
     t_env   *current;
 
-    head = g_env_head;
+    head = head_cpy;
     while (head->next)
     {
         current = head->next;
@@ -74,18 +74,41 @@ void    node_sort(void)
     }
 }
 
-void print_in_sort(void)
+void    print_in_sort_helper(t_env *current) 
 {
-    t_env *current;
-
-    current = g_env_head;
-    node_sort();
+    if (g_is_out)
+    {
+        dup2(g_fd_out, 1);
+        close(g_fd_out);
+    }
     while (current)
     {
+        write(1, "declare -x ", ft_strlen("declare -x "));
         write(1, current->key, ft_strlen(current->key));
         write(1, "=", 1);
         write(1, current->value, ft_strlen(current->value));
         write(1, "\n", 1);
         current = current->next;
+    }
+    exit(0);
+}
+
+void    print_in_sort(void)
+{
+    t_env *current;
+    t_env *head_cpy;
+    pid_t pid;
+
+    head_cpy = node_cpy();
+    current = head_cpy;
+    node_sort(head_cpy);
+    if ((pid = fork()) < 0)
+        return ;
+    if (pid == 0)
+        print_in_sort_helper(current);
+    else
+    {
+        wait(NULL);
+        ft_lstclearenv(&head_cpy);
     }
 }

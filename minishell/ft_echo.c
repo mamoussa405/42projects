@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 12:03:41 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/11/21 11:30:37 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/11/30 12:45:36 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,43 +28,10 @@ size_t	check_for_n()
 
 void	input_out_red()
 {
-	t_cmd	*current;
-
-	current = g_cmd_head;
-	while (current && (current->type != semicolumn) && (current->type != pipee))
+	if (g_is_out)
 	{
-	    if	(current->type == input_red)	
-		{
-			current = current->next;
-			//check for permession first
-			g_int_fd = open(current->string, O_RDONLY);
-			close(g_int_fd);
-		}
-		else if (current->type == output_red)
-		{
-			current = current->next;
-			//check for file permessions first
-			g_out_fd = open(current->string, O_CREAT | O_WRONLY | O_TRUNC);
-			//check the errors if g_out_fd  < 0
-			int tmp = dup(g_out_fd);	
-			dup2(g_out_fd, 1);
-			close(tmp);
-		}
-		else if (current->type == append_output)
-		{
-			current = current->next;
-			//check for file permessions first
-			g_out_fd = open(current->string, O_CREAT | O_WRONLY | O_APPEND, S_IRWXU | S_IRWXG);
-			//check the errors if g_out_fd < 0
-			if (g_out_fd < 0)
-			{
-				ft_error("not such file or directory\n");
-				exit(0);
-			}
-			dup2(g_out_fd, 1);
-			close(g_out_fd);
-		}
-		current = current->next;
+		dup2(g_fd_out, 1);
+		close(g_fd_out);
 	}
 }
 
@@ -95,15 +62,18 @@ void	ft_echo_helper(void)
 	exit(0);
 }
 
-void	ft_echo()
+void	ft_echo(t_pipe *cur)
 {
-	pid_t	pid;
-	int		status;
+	// pid_t	pid;
+	// int		status;
 
-	if ((pid = fork()) < 0)
+	cur = NULL;
+	if (echo_error_checker())
 		return ;
-	if (pid == 0)
+	// if ((pid = fork()) < 0)
+	// 	return ;
+	// if (pid == 0)
 		ft_echo_helper();
-	else
-		wait(&status);
+	// else
+	// 	wait(&status);
 }

@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 12:51:04 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/11/23 17:34:48 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/11/28 11:30:11 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,6 @@ void    ft_unset_helper(void)
 
 void	ft_unset(void)
 {
-    t_cmd   *current;
-
-    current = g_cmd_head;
-    current = current->next;
-    if (ft_strchr(current->string, '='))
-    {
-        write(1, "unset: ", ft_strlen("unset: "));
-        write(1, current->string, ft_strlen(current->string));
-        write(1, ": invalid parameter name\n", 
-        ft_strlen(": invalid parameter name\n"));
-        return ;
-    }
     if (ft_strncmp("unset", g_cmd_head->string, ft_strlen(g_cmd_head->string)))
     {
         ft_error(g_cmd_head->string);
@@ -72,5 +60,13 @@ void	ft_unset(void)
     g_cmd_head = g_cmd_head->next;
     if (!g_cmd_head)
         return ;
+    if (ft_strchr(g_cmd_head->string, '='))
+    {
+        write(1, "unset: ", ft_strlen("unset: "));
+        write(1, g_cmd_head->string, ft_strlen(g_cmd_head->string));
+        write(1, ": invalid parameter name\n", 
+        ft_strlen(": invalid parameter name\n"));
+        return ;
+    }
     ft_unset_helper();
 }

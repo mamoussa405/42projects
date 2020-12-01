@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 20:12:47 by mbani             #+#    #+#             */
-/*   Updated: 2020/11/24 12:19:11 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/11/26 12:13:12 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	ft_lstadd_backcmd(t_cmd **alst, t_cmd *new)
 		while (p->next)
 			p = p->next;
 		p->next = new;
-		new->next = NULL;
+		if (new)
+			new->next = NULL;
 	}
 }
