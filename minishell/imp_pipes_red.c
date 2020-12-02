@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:06:56 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/11/30 16:23:00 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/02 09:50:21 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,41 @@ void    imp_red(void)
 
 void    imp_pipes(t_pipe *cur)
 {
-    if (cur->index == 0 && (cur->fd1 > 2) && (cur->fd0 > 2))
+    if (cur->index == 0 && (cur->fd1 > 2) && (cur->fd0 > 2) && !g_is_out)
     {
-        printf("first one\n");
-        dup2(cur->fd1, 1);
-        close(cur->fd1);
+        if (dup2(cur->fd1, 1) < 0)
+        {
+            ft_error(strerror(errno));
+            write(2, "\n", 1);
+        }
         close(cur->fd0);
     }
     else if (cur->index > 0 && (cur->fd1 > 2) && (cur->prev->fd0 > 2))
     {
-        dup2(cur->fd1, 1);
-        dup2(cur->prev->fd0, 0);
-        close(cur->fd1);
-        close(cur->prev->fd0);
+        if (!g_is_in)
+        {
+            if (dup2(cur->prev->fd0, 0) < 0)
+            {
+                ft_error(strerror(errno));
+                write(2, "\n", 1);
+            }
+        }
+        if (!g_is_out)
+        {
+            if (dup2(cur->fd1, 1) < 0)
+            {
+                ft_error(strerror(errno));
+                write(2, "\n", 1);
+            }
+            close(cur->fd0);
+        }
     }
-    else if (cur->index > 0 && (cur->fd1 == 0) && (cur->fd0 == 0))
+    else if (cur->index > 0 && (cur->fd1 == 0) && (cur->fd0 == 0) && !g_is_in)
     {
-        printf("last one\n");
-        dup2(cur->prev->fd0, 0);
-        close(cur->prev->fd0);
+        if (dup2(cur->prev->fd0, 0) < 0)
+        {
+            ft_error(strerror(errno));
+            write(2, "\n", 1);
+        }
     }
 }

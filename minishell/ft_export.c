@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 12:49:37 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/11/29 17:13:35 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/02 11:15:15 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ size_t    error_cheker(void)
     current = current->next;
     while (current)
     {
+        if (current->type == pipee)
+            return (1);
         if ((ptr_equ = equ_search(current->string, '=')) && (ptr_equ == current->string)) 
         {
             if (*(ptr_equ + 1) == '\0')
@@ -83,7 +85,7 @@ size_t    error_cheker(void)
             else
             {
                 ft_error(current->string);
-                write(1 ," not found\n", ft_strlen(" not found\n"));
+                write(2 ," not found\n", ft_strlen(" not found\n"));
             }
             return (1);
         }
@@ -97,21 +99,24 @@ void	ft_export(t_pipe *cur)
     char    *ptr_to_equ;
 
     ptr_to_equ = NULL;
-    cur = NULL;
     if (ft_strncmp("export", g_cmd_head->string, ft_strlen(g_cmd_head->string)))
     {
         ft_error(g_cmd_head->string);
-        write(1, ": command not found\n", ft_strlen(": command not found\n"));
+        write(2, ": command not found\n", ft_strlen(": command not found\n"));
+        return ;
+    }
+    g_cmd_head = g_cmd_head->next;
+    if (!g_cmd_head || (g_cmd_head->type == semicolumn) || (g_cmd_head->type == pipee))
+    {
+        print_in_sort(cur);
         return ;
     }
     if (error_cheker())
         return ;
-    g_cmd_head = g_cmd_head->next;
-    if (!g_cmd_head || (g_cmd_head->type == semicolumn))
+    while (g_cmd_head && (g_cmd_head->type != semicolumn) && (g_cmd_head->type != pipee))
     {
-        print_in_sort();
-        return ;
+        if ((ptr_to_equ = ft_strchr(g_cmd_head->string, '=')))
+            ft_export_helper(ptr_to_equ);
+        g_cmd_head = g_cmd_head->next;
     }
-    if ((ptr_to_equ = ft_strchr(g_cmd_head->string, '=')))
-        ft_export_helper(ptr_to_equ);
 }

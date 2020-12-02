@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 12:51:04 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/11/28 11:30:11 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/02 11:01:18 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,36 @@ void    ft_unset_helper(void)
     current = g_env_head;
     while (current)
     {
-        if (!ft_strncmp(g_cmd_head->string, current->key,
-        ft_strlen(g_cmd_head->string)))
+        if ((ft_strlen(g_cmd_head->string) == ft_strlen(current->key) &&
+        !ft_strncmp(g_cmd_head->string, current->key, ft_strlen(current->key))))
         {
             delete_node(current);
            break;
         }
         current = current->next;
     }
+}
+
+size_t  unset_error(void)
+{
+    t_cmd *cur;
+
+    cur = g_cmd_head;
+    while (cur && (cur->type != semicolumn))
+    {
+        if (cur->type == pipee)
+            return (1);
+        if (ft_strchr(cur->string, '='))
+        {
+            write(2, "unset: ", ft_strlen("unset: "));
+            write(2, cur->string, ft_strlen(cur->string));
+            write(2, "=: invalid parameter name\n", 
+            ft_strlen("=: invalid parameter name\n"));
+            return (1);
+        }
+        cur = cur->next;
+    }
+    return (0);
 }
 
 void	ft_unset(void)
@@ -60,13 +82,11 @@ void	ft_unset(void)
     g_cmd_head = g_cmd_head->next;
     if (!g_cmd_head)
         return ;
-    if (ft_strchr(g_cmd_head->string, '='))
-    {
-        write(1, "unset: ", ft_strlen("unset: "));
-        write(1, g_cmd_head->string, ft_strlen(g_cmd_head->string));
-        write(1, ": invalid parameter name\n", 
-        ft_strlen(": invalid parameter name\n"));
+    if (unset_error())
         return ;
+    while (g_cmd_head && (g_cmd_head->type != semicolumn))
+    {
+        ft_unset_helper();
+        g_cmd_head = g_cmd_head->next;
     }
-    ft_unset_helper();
 }

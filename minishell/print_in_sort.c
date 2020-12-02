@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 16:15:07 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/11/28 14:46:08 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/02 11:03:11 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,14 @@ void    node_sort(t_env *head_cpy)
     }
 }
 
-void    print_in_sort_helper(t_env *current) 
+void    print_in_sort_helper(t_env *current, t_pipe *cur)
 {
     if (g_is_out)
     {
         dup2(g_fd_out, 1);
         close(g_fd_out);
     }
+    imp_pipes(cur);
     while (current)
     {
         write(1, "declare -x ", ft_strlen("declare -x "));
@@ -93,7 +94,7 @@ void    print_in_sort_helper(t_env *current)
     exit(0);
 }
 
-void    print_in_sort(void)
+void    print_in_sort(t_pipe *cur)
 {
     t_env *current;
     t_env *head_cpy;
@@ -102,13 +103,11 @@ void    print_in_sort(void)
     head_cpy = node_cpy();
     current = head_cpy;
     node_sort(head_cpy);
+    printf("yup\n");
     if ((pid = fork()) < 0)
         return ;
     if (pid == 0)
-        print_in_sort_helper(current);
+        print_in_sort_helper(current, cur);
     else
-    {
-        wait(NULL);
         ft_lstclearenv(&head_cpy);
-    }
 }

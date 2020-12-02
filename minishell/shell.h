@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 20:08:51 by mbani             #+#    #+#             */
-/*   Updated: 2020/11/30 17:35:01 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/01 18:50:45 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ size_t	ft_cd_helper(void);
 char	*check_for_home(void);
 void	cpy_env(char **envp);
 void	ft_exit(char *line, t_cmd *tmp);
-void	print_in_sort(void);
+void	print_in_sort(t_pipe *cur);
 size_t	echo_error_checker(void);
 size_t	check_for_red(void);
 t_cmd	*remove_red(t_cmd *ptr);

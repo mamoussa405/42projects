@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 17:27:03 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/11/30 13:01:14 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/01 18:41:36 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ size_t  check_for_pipe(t_cmd *cur_cmd)
 
 void    ft_pipes(t_cmd *cur_cmd, t_pipe *cur_pipe)
 {
-    int     fd[2];
+    int     *fd;
 
-    // fd = (int*)malloc(sizeof(int)*2);
+    fd = (int*)malloc(sizeof(int)*2);
     if (check_for_pipe(cur_cmd))
     {
         pipe(fd);
         cur_pipe->fd0 = dup(fd[0]);
         cur_pipe->fd1 = dup(fd[1]);
-        // close(fd[0]);
-        // close(fd[1]);
+        close(fd[0]);
+        close(fd[1]);
     }
-    // free(fd);
-    // fd = NULL;
+    free(fd);
+    fd = NULL;
 }

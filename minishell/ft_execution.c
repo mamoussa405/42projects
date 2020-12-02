@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 12:54:49 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/11/30 17:33:51 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/02 11:20:34 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,32 @@ void	ft_exec_helper(void)
 	}
 }
 
-void 	close_all(void)
+void 	close_all(t_pipe *cur)
 {
-	t_pipe *cur;
-
-	cur = g_pipe_head;
-	while (cur)
+	if (cur->index == 0 && (cur->fd0 > 2) && (cur->fd1 > 2))
+		close(cur->fd1);
+	else if (cur->index > 0 && (cur->fd0 > 2) && (cur->fd1 > 2))
 	{
-		if (cur->fd0 > 2)
-			close(cur->fd0);
-		if (cur->fd1 > 2)
-			close(cur->fd1);
-		cur = cur->next;
+		close(cur->prev->fd0);
+		close(cur->fd1);
+	}
+	else if (cur->prev->fd0 > 2)
+		close(cur->prev->fd0);
+}
+
+void	free_pipe(void)
+{
+	t_pipe *tmp;
+
+	while (g_pipe_head)
+	{
+		tmp = g_pipe_head->next;
+		free(g_pipe_head);
+		g_pipe_head = 	NULL;
+		g_pipe_head = tmp;
 	}
 }
+
 void	ft_execution(char *line, t_cmd *tmp)
 {
 	t_pipe *cur;
@@ -68,35 +80,34 @@ void	ft_execution(char *line, t_cmd *tmp)
 		glob_var_init();
 		if (check_for_red())
 			return ;
-		ft_pipes(g_cmd_head, cur);
 		if (g_cmd_head->type == cmd)
 		{
-				if (!ft_strncmp(g_cmd_head->string, "cd", ft_strlen("cd")))
-					ft_cd();
-				else if (!ft_strncmp(g_cmd_head->string, "exit", ft_strlen("exit")))
-					ft_exit(line, tmp);
-				else if (!ft_strncmp(g_cmd_head->string, "unset", ft_strlen("unset")))
-					ft_unset();
-				else if (!ft_strncmp(g_cmd_head->string, "env", ft_strlen("env")))
-					ft_env(cur);
-				else if (!ft_strncmp(g_cmd_head->string, "export", ft_strlen("export")))
-					ft_export(cur);
-				else if (fork() == 0)
-				{
-					if (!ft_strncmp(g_cmd_head->string, "echo", ft_strlen("echo")))
-						ft_echo(cur);
-					else if (!ft_strncmp(g_cmd_head->string, "pwd", ft_strlen("pwd")))
-						ft_pwd(cur);
-					else
-						ft_not_builtin(cur);
-					exit(0);
-				}
-			cur = cur->next;
+			ft_pipes(g_cmd_head, cur);
+			if (!ft_strncmp(g_cmd_head->string, "cd", ft_strlen("cd")))
+				ft_cd();
+			else if (!ft_strncmp(g_cmd_head->string, "exit", ft_strlen("exit")))
+				ft_exit(line, tmp);
+			else if (!ft_strncmp(g_cmd_head->string, "unset", ft_strlen("unset")))
+				ft_unset();
+			else if (!ft_strncmp(g_cmd_head->string, "env", ft_strlen("env")))
+				ft_env(cur);
+			else if (!ft_strncmp(g_cmd_head->string, "export", ft_strlen("export")))
+				ft_export(cur);
+			else if (!ft_strncmp(g_cmd_head->string, "pwd", ft_strlen("pwd")))
+				ft_pwd(cur);
+			else if (fork() == 0)
+			{
+				if (!ft_strncmp(g_cmd_head->string, "echo", ft_strlen("echo")))
+					ft_echo(cur);
+				else
+					ft_not_builtin(cur);
+				exit(0);
+			}
+			close_all(cur);
+		cur = cur->next;
 		}
 		g_cmd_head = (g_cmd_head) ? g_cmd_head->next : g_cmd_head;
 	}
-	close_all();
-	// close(fd[0]);
-	// close(fd[1]);
 	while(wait(NULL) != -1);
+	free_pipe();
 }

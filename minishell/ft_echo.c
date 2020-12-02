@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 12:03:41 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/11/30 12:45:36 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/01 18:45:07 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,14 @@ void	input_out_red()
 	}
 }
 
-void	ft_echo_helper(void)
+void	ft_echo_helper(t_pipe *cur)
 {
 	size_t	is_n;
 
 	is_n = 0;
 	g_cmd_head = g_cmd_head->next;
 	input_out_red();
+	imp_pipes(cur);
 	if (!g_cmd_head || (g_cmd_head->type == semicolumn) || (g_cmd_head->type == pipee))
 	{
 		write(1, "\n", 1);
@@ -67,13 +68,12 @@ void	ft_echo(t_pipe *cur)
 	// pid_t	pid;
 	// int		status;
 
-	cur = NULL;
 	if (echo_error_checker())
 		return ;
 	// if ((pid = fork()) < 0)
 	// 	return ;
 	// if (pid == 0)
-		ft_echo_helper();
+		ft_echo_helper(cur);
 	// else
 	// 	wait(&status);
 }
