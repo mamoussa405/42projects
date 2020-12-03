@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 12:03:41 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/12/01 18:45:07 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/02 12:01:26 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,7 @@ void	ft_echo_helper(t_pipe *cur)
 
 void	ft_echo(t_pipe *cur)
 {
-	// pid_t	pid;
-	// int		status;
-
 	if (echo_error_checker())
 		return ;
-	// if ((pid = fork()) < 0)
-	// 	return ;
-	// if (pid == 0)
-		ft_echo_helper(cur);
-	// else
-	// 	wait(&status);
+	ft_echo_helper(cur);
 }

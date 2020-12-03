@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 12:54:49 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/12/02 11:20:34 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/03 17:22:42 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,13 @@ void	ft_execution(char *line, t_cmd *tmp)
 			return ;
 		if (g_cmd_head->type == cmd)
 		{
+			g_is_cmd = 1;
 			ft_pipes(g_cmd_head, cur);
+			if (ft_strlen(g_cmd_head->string) == ft_strlen("sort") && 
+			!ft_strncmp(g_cmd_head->string, "sort", ft_strlen("sort")))
+				g_is_sort = 1;
+			else
+				g_is_sort = 0;
 			if (!ft_strncmp(g_cmd_head->string, "cd", ft_strlen("cd")))
 				ft_cd();
 			else if (!ft_strncmp(g_cmd_head->string, "exit", ft_strlen("exit")))
@@ -108,6 +114,9 @@ void	ft_execution(char *line, t_cmd *tmp)
 		}
 		g_cmd_head = (g_cmd_head) ? g_cmd_head->next : g_cmd_head;
 	}
-	while(wait(NULL) != -1);
+	while(wait(&g_status) != -1);
+	g_is_cmd = 0;
+	if (g_is_sigint && WIFSIGNALED(g_status))
+		write(1, "\n", 1);
 	free_pipe();
 }

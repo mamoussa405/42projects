@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 20:08:51 by mbani             #+#    #+#             */
-/*   Updated: 2020/12/01 18:50:45 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/03 18:25:55 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,11 @@ int		g_fd_in;
 int		g_fd_out;
 size_t	g_is_in;
 size_t	g_is_out;
+int		g_status;
+size_t	g_is_sigint;
+size_t	g_is_cmd;
+size_t 	g_is_sort;
+size_t	g_is_eof;
 t_env	*ft_lstnewenv(char *key, char *value);
 void	ft_lstadd_backenv(t_env **alst, t_env *new);
 void	ft_lstclearenv(t_env **lst);
@@ -102,4 +107,5 @@ void	clear_list(void);
 void	ft_pipes(t_cmd *head, t_pipe *cur);
 void	imp_red(void);
 void	imp_pipes(t_pipe *cur);
+char	*check_for_slash(char *str);
 #endif

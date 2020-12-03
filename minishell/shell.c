@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 17:54:10 by mbani             #+#    #+#             */
-/*   Updated: 2020/11/24 12:28:31 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/03 18:32:07 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -515,19 +515,33 @@ void	line_parser(char *line)
 	line_split(line);
 	if (line[0])
 	param_expansion(g_cmd_head);
-	// while (tmp->next)
-	// {
-	// 	ft_putstr_fd(tmp->string, 1);
-	// 	ft_putstr_fd(" : ", 1);
-	// 	ft_putnbr_fd(tmp->type, 1);
-	// 	ft_putchar_fd('\n', 1);
-	// 	tmp = tmp->next;
-	// }
-	// ft_putstr_fd(tmp->string, 1);
-	// ft_putstr_fd(" : ", 1);
-	// ft_putnbr_fd(tmp->type, 1);
-	// ft_putchar_fd('\n', 1);
-	// t_cmd *tmp = g_cmd_head;
+}
+
+void	sig_handler(int seg)
+{
+	// char **args;
+	char *line;
+
+	g_is_sigint = 0;
+	if (seg == SIGINT && !g_is_cmd)
+	{
+		// if (fork() == 0)
+		// {
+		// 	args = (char**)malloc(sizeof(char*)*3);
+		// 	args[0] = "/bin/stty";
+		// 	args[1] = "-echoctl";
+		// 	args[2] = null;
+		// 	execve("/bin/stty", args, null);
+		// }
+		// else
+			write(1, "\nminishell-2.0$ ", 18);
+	}
+	else
+		g_is_sigint = 1;
+	if (seg == SIGQUIT && !g_is_cmd)
+		write(1, "\b\b", 2);
+	else if (!g_is_sort && seg == SIGQUIT)
+		write(1, "Quit: 3", 7);
 }
 
 int		main(int argc, char  **argv, char **envp)
@@ -540,9 +554,11 @@ int		main(int argc, char  **argv, char **envp)
 	(void) argv;
 	cpy_env(envp);
 	env_var(envp);
+	signal(SIGINT, sig_handler);
+	signal(SIGQUIT, sig_handler);
 	while (1)
 	{
-		write(1, "Minishell-2.0$ ", 15);
+		write(1, "minishell-2.0$ ", 15);
 		ret = get_next_line(0, &line);
 		if (!ret)
 			break ;

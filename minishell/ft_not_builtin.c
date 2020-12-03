@@ -81,7 +81,7 @@ size_t	check_for_abspath(size_t counter)
 	cmd = ft_strdup(g_cmd_head->string);
 	while (res[i])
 	{
-		if (!ft_strncmp(res[i], cmd, ft_strlen(res[i])))
+		if (check_for_slash(cmd))
 		{
 			args = set_args(counter);
 			execve(args[0], args, g_tmp_env);
