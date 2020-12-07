@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 17:54:10 by mbani             #+#    #+#             */
-/*   Updated: 2020/12/03 18:32:07 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/05 12:23:27 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -520,8 +520,6 @@ void	line_parser(char *line)
 void	sig_handler(int seg)
 {
 	// char **args;
-	char *line;
-
 	g_is_sigint = 0;
 	if (seg == SIGINT && !g_is_cmd)
 	{
@@ -556,18 +554,27 @@ int		main(int argc, char  **argv, char **envp)
 	env_var(envp);
 	signal(SIGINT, sig_handler);
 	signal(SIGQUIT, sig_handler);
+	line = NULL;
 	while (1)
 	{
-		write(1, "minishell-2.0$ ", 15);
+		if (!line)
+			write(1, "minishell-2.0$ ", 15);
+		g_tmp = NULL;
 		ret = get_next_line(0, &line);
 		if (!ret)
-			break ;
+		{
+			write(1, "exit", 4);
+			ft_exit(line, tmp);
+		}
 		line_parser(line);
 		tmp = g_cmd_head;
 		ft_execution(line, tmp);
 		if (tmp)
 			ft_lstclearcmd(&tmp);
 		free(line);
+		line = 	NULL;
+		free(g_buff);
+		g_buff = NULL;
 	}
 	free(line);
 	ft_lstclearenv(&g_env_head);/* free env var  */

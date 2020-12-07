@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 12:03:41 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/12/02 12:01:26 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/05 16:23:02 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void	ft_echo_helper(t_pipe *cur)
 {
 	size_t	is_n;
 
-	is_n = 0;
 	g_cmd_head = g_cmd_head->next;
 	input_out_red();
 	imp_pipes(cur);
-	if (!g_cmd_head || (g_cmd_head->type == semicolumn) || (g_cmd_head->type == pipee))
+	if (!g_cmd_head || (g_cmd_head->type == semicolumn) || 
+	(g_cmd_head->type == pipee))
 	{
 		write(1, "\n", 1);
 		exit(0);
@@ -51,11 +51,13 @@ void	ft_echo_helper(t_pipe *cur)
 	is_n = check_for_n();
 	if (is_n)
 		g_cmd_head = g_cmd_head->next;
-	while (g_cmd_head && (g_cmd_head->type != semicolumn) && (g_cmd_head->type != pipee))
+	while (g_cmd_head && (g_cmd_head->type != semicolumn) && 
+	(g_cmd_head->type != pipee))
 	{
 		write(1, g_cmd_head->string, ft_strlen(g_cmd_head->string));
 		g_cmd_head = g_cmd_head->next;
-		if (g_cmd_head && (g_cmd_head->type != semicolumn) && (g_cmd_head->type != pipee))
+		if (g_cmd_head && (g_cmd_head->type != semicolumn) && 
+		(g_cmd_head->type != pipee))
 			write(1, " ", 1);
 	}
 	if (!is_n)

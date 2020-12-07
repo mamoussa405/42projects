@@ -101,6 +101,7 @@ void	ft_not_builtin(t_pipe *cur)
 	size_t	counter;
 
 	counter = args_count();
+	not_built_error();
 	imp_red();
 	imp_pipes(cur);
 	if (check_for_abspath(counter))

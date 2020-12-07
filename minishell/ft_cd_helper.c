@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 17:02:57 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/11/22 17:37:36 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/05 16:21:12 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ size_t    cd_helper(void)
     }
     return (0);
 }
+
 size_t    ft_cd_helper(void)
 {
     char    *str;

@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 10:12:41 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/11/27 11:36:21 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/05 12:44:49 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,6 @@ size_t    check_for_red(void)
         }
         current = (current) ? current->next:current;
     }
-    if (g_is_in || g_is_out)
-    {
-        current = g_cmd_head;
-        current = ptr_to_red(current);
-        current = remove_red(current);
-        if (current)
-            add_back_cmd(g_cmd_head, current);
-    }
+    check_for_red2(current);
     return (0);
 }
