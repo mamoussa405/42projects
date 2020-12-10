@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 12:54:49 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/12/05 12:38:32 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/10 19:36:38 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,21 @@ void	ft_exec_helper(void)
 	}
 }
 
-void 	close_all(t_pipe *cur)
+void	close_all(void)
 {
-	if (cur->index == 0 && (cur->fd0 > 2) && (cur->fd1 > 2))
-		close(cur->fd1);
-	else if (cur->index > 0 && (cur->fd0 > 2) && (cur->fd1 > 2))
+	if (g_cur->index == 0 && (g_cur->fd0 > 2) && (g_cur->fd1 > 2))
+		close(g_cur->fd1);
+	else if (g_cur->index > 0 && (g_cur->fd0 > 2) && (g_cur->fd1 > 2))
 	{
-		close(cur->prev->fd0);
-		close(cur->fd1);
+		close(g_cur->prev->fd0);
+		close(g_cur->fd1);
 	}
-	else if (cur->prev->fd0 > 2)
-		close(cur->prev->fd0);
+	else if (g_cur->prev->fd0 > 2)
+		close(g_cur->prev->fd0);
+	if (g_fd_in > 2)
+		close(g_fd_in);
+	if (g_fd_out > 2)
+		close(g_fd_out);
 }
 
 void	free_pipe(void)
@@ -64,35 +68,21 @@ void	free_pipe(void)
 	{
 		tmp = g_pipe_head->next;
 		free(g_pipe_head);
-		g_pipe_head = 	NULL;
+		g_pipe_head = NULL;
 		g_pipe_head = tmp;
 	}
 }
 
 void	ft_execution(char *line, t_cmd *tmp)
 {
-	t_pipe *cur;
-
 	ft_exec_helper();
-	cur = g_pipe_head;
+	g_cur = g_pipe_head;
 	while (g_cmd_head)
 	{
-		glob_var_init();
-		if (check_for_red())
+		replace_return_value(&g_cmd_head, g_status);
+		if (ft_exec1(line, tmp))
 			return ;
-		if (g_cmd_head->type == cmd)
-		{
-			g_is_cmd = 1;
-			ft_pipes(g_cmd_head, cur);
-			if (ft_strlen(g_cmd_head->string) == ft_strlen("sort") && 
-			!ft_strncmp(g_cmd_head->string, "sort", ft_strlen("sort")))
-				g_is_sort = 1;
-			else
-				g_is_sort = 0;
-			ft_exec2(cur, line, tmp);
-		cur = cur->next;
-		}
 		g_cmd_head = (g_cmd_head) ? g_cmd_head->next : g_cmd_head;
 	}
-	ft_exec3();
+	free_pipe();
 }

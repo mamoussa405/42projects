@@ -5,21 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/10 18:08:29 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/11/19 17:4 b48y mamoussa         ###   ########.fr       */
+/*   Created: 2020/12/10 16:28:57 by mamoussa          #+#    #+#             */
+/*   Updated: 2020/12/10 16:28:59 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-size_t	args_count()
+size_t	args_count(void)
 {
 	size_t	counter;
 	t_cmd	*current;
 
 	counter = 0;
 	current = g_cmd_head;
-	while (current && (current->type != semicolumn) && (current->type != pipee))
+	while (current && (current->type != semicolumn) &&
+	(current->type != pipee))
 	{
 		counter++;
 		current = current->next;
@@ -27,7 +28,7 @@ size_t	args_count()
 	return (counter);
 }
 
-char	**set_args(size_t	counter)
+char	**set_args(size_t counter)
 {
 	size_t	i;
 	char	**args;
@@ -47,66 +48,19 @@ char	**set_args(size_t	counter)
 	return (args);
 }
 
-void	check_for_abspath_helper(char **res, char **args
-,char *cmd, size_t counter)
-{
-	g_tmp = res[0];
-	res[0] = (res[0][ft_strlen(res[0]) - 1] != '/') ?
-	ft_strjoin(res[0], "/") : res[0];
-	simple_pointer_free(g_tmp);
-	g_tmp = res[0];
-	res[0] = ft_strjoin(res[0], cmd);
-	simple_pointer_free(g_tmp);
-	g_tmp = g_cmd_head->string;
-	g_cmd_head->string = ft_strdup(res[0]);
-	simple_pointer_free(g_tmp);
-	args = set_args(counter);
-	execve(args[0], args, g_tmp_env);
-	g_tmp = g_cmd_head->string;
-	g_cmd_head->string = ft_strdup(cmd);
-	simple_pointer_free(g_tmp);
-	double_pointer_free(args);
-}
-
-size_t	check_for_abspath(size_t counter)
-{
-	char	**args;
-	char	**res;
-	char	*cmd;
-	size_t	i;
-
-	i = 0;
-	res = path_spliter();
-	args = NULL;
-	cmd = ft_strdup(g_cmd_head->string);
-	while (res[i])
-	{
-		if (check_for_slash(cmd))
-		{
-			args = set_args(counter);
-			execve(args[0], args, g_tmp_env);
-			double_pointer_free(args);
-		}
-		else
-			check_for_abspath_helper(&res[i], args, cmd, counter);
-		i++;
-	}
-	free(cmd);
-	double_pointer_free(res);
-	return (1);
-}
-
-void	ft_not_builtin(t_pipe *cur)
+void	ft_not_builtin(void)
 {
 	size_t	counter;
+	char	**args;
 
 	counter = args_count();
-	not_built_error();
-	imp_red();
-	imp_pipes(cur);
-	if (check_for_abspath(counter))
+	if (!not_built_error())
 	{
 		ft_error("command not found\n");
-		exit(0);
+		exit(127);
 	}
+	imp_red();
+	imp_pipes();
+	args = set_args(counter);
+	execve(args[0], args, g_tmp_env);
 }
