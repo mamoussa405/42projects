@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 11:11:48 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/12/10 12:37:07 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/11 13:29:40 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ size_t	ft_exit1(void)
 
 size_t	ft_exit_helper(void)
 {
-	if (ft_exit1())
-		return (1);
 	if (g_cmd_head && ft_strncmp("exit", g_cmd_head->string,
 	ft_strlen(g_cmd_head->string)))
 	{
@@ -63,8 +61,6 @@ size_t	ft_exit_helper(void)
 		write(1, "\n", 1);
 		return (1);
 	}
-	if (!g_is_pipe)
-		write(1, "exit\n", 5);
 	if (g_cmd_head->next && g_cmd_head->next->type != pipee
 	&& g_cmd_head->next->type != semicolumn &&
 	is_all_num(g_cmd_head->next->string))
@@ -73,7 +69,10 @@ size_t	ft_exit_helper(void)
 		write(1, g_cmd_head->next->string, ft_strlen(g_cmd_head->next->string));
 		write(1, ": numeric argument required\n",
 		ft_strlen(": numeric argument required\n"));
+		return (0);
 	}
+	if (ft_exit1())
+		return (1);
 	return (0);
 }
 
@@ -82,12 +81,13 @@ void	ft_exit(char *line, t_cmd *tmp)
 	char	*str;
 
 	str = NULL;
-	if (g_cmd_head->next)
+	if (g_cmd_head && g_cmd_head->next)
 		str = g_cmd_head->next->string;
-	if (ft_exit_helper())
+	if (g_cmd_head && ft_exit_helper())
 		return ;
 	if (!g_is_pipe)
 	{
+		write(1, "exit\n", 5);
 		if (line)
 			simple_pointer_free(line);
 		if (tmp)
@@ -95,7 +95,8 @@ void	ft_exit(char *line, t_cmd *tmp)
 		ft_lstclearenv(&g_env_head);
 		if (g_tmp_env)
 			double_pointer_free(g_tmp_env);
-		free_pipe();
+		if (g_pipe_head)
+			free_pipe();
 		if (str)
 			exit(ft_atoi(str));
 		else

@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 16:20:47 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/12/10 11:48:19 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/11 17:04:44 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,24 @@ size_t	export_error(t_cmd *current)
 			write(2, " :not a valid identifier\n",
 			ft_strlen(" :not a valid identifier\n"));
 		}
-		g_status = 127;
+		g_status = 1;
 		return (1);
+	}
+	return (0);
+}
+
+size_t	lexer_checker(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!(str[i] >= '0' && str[i] <= '9') &&
+		!(str[i] >= 'a' && str[i] <= 'z') && !(str[i] >= 'A' && str[i] <= 'Z')
+		&& str[i] != '_' && str[i] != '=')
+			return (1);
+		i++;
 	}
 	return (0);
 }
@@ -57,10 +73,19 @@ void	ft_export_2(void)
 	while (g_cmd_head && (g_cmd_head->type != semicolumn) &&
 	(g_cmd_head->type != pipee))
 	{
-		if (export_error(g_cmd_head))
+		if (lexer_checker(g_cmd_head->string))
+		{
+			ft_error(g_cmd_head->string);
+			write(2, " :not a valid identifier\n",
+			ft_strlen(" :not a valid identifier\n"));
+			g_status = 1;
+			g_cmd_head = g_cmd_head->next;
+			continue ;
+		}
+		if (export_error(g_cmd_head) || (export_pipe_checker()))
 		{
 			g_cmd_head = g_cmd_head->next;
-			continue;
+			continue ;
 		}
 		if ((ptr_to_equ = ft_strchr(g_cmd_head->string, '=')))
 			ft_export_helper(ptr_to_equ);

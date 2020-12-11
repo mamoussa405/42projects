@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 17:54:10 by mbani             #+#    #+#             */
-/*   Updated: 2020/12/10 20:23:11 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/11 12:21:17 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	sig_handler(int seg)
 {
 	g_is_sigint = 0;
 	if (seg == SIGINT && !g_is_cmd)
-			write(1, "\nminishell-2.0$\t", 18);
+		write(1, "\nminishell-2.0$\t", 18);
 	else
 		g_is_sigint = 1;
 	if (seg == SIGQUIT && !g_is_cmd)
@@ -61,17 +61,22 @@ void	sig_handler(int seg)
 		write(1, "Quit: 3", 7);
 }
 
-int		main(int argc, char  **argv, char **envp)
+void	main_1(char **envp)
 {
-	int ret;
-	char *line;
-
-	(void) argc;
-	(void) argv;
 	cpy_env(envp);
 	env_var(envp);
 	signal(SIGINT, sig_handler);
 	signal(SIGQUIT, sig_handler);
+}
+
+int		main(int argc, char **argv, char **envp)
+{
+	int		ret;
+	char	*line;
+
+	(void)argc;
+	(void)argv;
+	main_1(envp);
 	line = NULL;
 	while (1)
 	{
@@ -85,24 +90,10 @@ int		main(int argc, char  **argv, char **envp)
 			ft_exit(line, g_tmp_cmd);
 		}
 		line_parser(line);
-		g_tmp_cmd = g_cmd_head;
-		if (g_tmp_cmd && (syntax_error(g_tmp_cmd)) && (swap_lst(&g_tmp_cmd)) &&( add_echo(&g_tmp_cmd)))
-		{
-			g_cmd_head = g_tmp_cmd;
-			ft_execution(line, g_tmp_cmd);
-		}		
-		if (g_tmp_cmd)
-			ft_lstclearcmd(&g_tmp_cmd);
+		main_3(line);
 		free(line);
-		line = 	NULL;
-		free(g_buff);
-		g_buff = NULL;
+		line = NULL;
 	}
-	free(line);
-	ft_lstclearenv(&g_env_head);
-	if (g_tmp_cmd)
-		ft_lstclearcmd(&g_tmp_cmd);
-	if (g_tmp_env)
-		double_pointer_free(g_tmp_env);
+	main_2(line);
 	return (0);
 }

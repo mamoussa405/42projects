@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 12:51:04 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/12/10 16:37:33 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/11 17:07:33 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ size_t	unset_error(void)
 			write(2, cur->string, ft_strlen(cur->string));
 			write(2, "=: invalid parameter name\n",
 			ft_strlen("=: invalid parameter name\n"));
+			g_status = 1;
 			return (1);
 		}
 		cur = cur->next;

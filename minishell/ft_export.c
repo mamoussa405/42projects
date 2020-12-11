@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 12:49:37 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/12/10 16:19:47 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/11 16:42:44 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,5 @@ void	ft_export(void)
 		print_in_sort();
 		return ;
 	}
-	if (export_pipe_checker())
-		return ;
 	ft_export_2();
 }

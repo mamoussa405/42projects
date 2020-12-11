@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 10:12:41 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/12/09 20:50:50 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/11 13:22:57 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ size_t	app_red(t_cmd *current)
 	if (g_fd_out > 2)
 		close(g_fd_out);
 	g_fd_out = open(current->string, O_CREAT | O_WRONLY | O_APPEND,
-	S_IRWXU | S_IRWXG);
+	S_IRUSR | S_IWUSR);
 	if (g_fd_out < 0)
 	{
 		ft_error(current->string);
@@ -55,7 +55,7 @@ size_t	out_red(t_cmd *current)
 	if (g_fd_out > 2)
 		close(g_fd_out);
 	g_fd_out = open(current->string, O_CREAT | O_WRONLY | O_TRUNC,
-	S_IRWXU | S_IRWXG);
+	S_IRUSR | S_IWUSR);
 	if (g_fd_out < 0)
 	{
 		ft_error(current->string);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbani <mbani@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:08:11 by mbani             #+#    #+#             */
-/*   Updated: 2020/12/09 11:49:26 by mbani            ###   ########.fr       */
+/*   Updated: 2020/12/11 13:12:01 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*rm_spaces(char *line)
 	return (line);
 }
 
-void	cp_before_$(int *k, int len, char **tmp, char **str)
+void	cp_before_dlr(int *k, int len, char **tmp, char **str)
 {
 	while (*k < len)
 	{
@@ -35,7 +35,7 @@ void	cp_before_$(int *k, int len, char **tmp, char **str)
 	}
 }
 
-void	cp_from_$(int *k, char **tmp, char **env, int *x)
+void	cp_from_dlr(int *k, char **tmp, char **env, int *x)
 {
 	int len;
 
@@ -49,7 +49,7 @@ void	cp_from_$(int *k, char **tmp, char **env, int *x)
 	}
 }
 
-void replace(char **str, char *env, int j, int i)
+void	replace(char **str, char *env, int j, int i)
 {
 	char	*tmp;
 	int		k;
@@ -61,8 +61,8 @@ void replace(char **str, char *env, int j, int i)
 	len = ft_strlen(env) + (ft_strlen(str[0]) - (j + 1));
 	tmp = ft_calloc(len + 1, len + 1);
 	tmp[len] = '\0';
-	cp_before_$(&k, (i - j), &tmp, str);
-	cp_from_$(&k, &tmp, &env, &x);
+	cp_before_dlr(&k, (i - j), &tmp, str);
+	cp_from_dlr(&k, &tmp, &env, &x);
 	i++;
 	while (str[0][i])
 	{
@@ -74,7 +74,7 @@ void replace(char **str, char *env, int j, int i)
 	str[0] = tmp;
 }
 
-int	search_and_replace(char **str, int i, int j)
+int		search_and_replace(char **str, int i, int j)
 {
 	t_env	*tmp;
 	char	ret[1];
@@ -86,7 +86,7 @@ int	search_and_replace(char **str, int i, int j)
 		str[0][i - j] = 127;
 		str[0][i - j + 1] = 127;
 		return (1);
-	}	
+	}
 	while (tmp->next)
 	{
 		if ((ft_strncmp_env(&str[0][i - j + 1], tmp->key, j)) == 0)

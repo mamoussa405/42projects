@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_handling.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbani <mbani@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:00:47 by mbani             #+#    #+#             */
-/*   Updated: 2020/12/03 11:04:58 by mbani            ###   ########.fr       */
+/*   Updated: 2020/12/11 13:15:20 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	quote_removal(char **str)
 	int		i;
 	char	*tmp;
 	char	*temp;
+
 	quote_removal_init(&quote, &tmp, &temp, &i);
 	while (str[0][i])
 	{

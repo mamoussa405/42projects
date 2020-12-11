@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 21:52:51 by mbani             #+#    #+#             */
-/*   Updated: 2020/12/04 17:24:10 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/11 12:49:49 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,7 @@ int		get_next_line(int fd, char **line)
 		if ((ret = read(fd, buff, BUFFER_SIZE)) == 0 && !g_buff)
 			return (body_check(&save, &buff));
 		buff[ret] = '\0';
-		if (g_buff)
-			g_tmp = g_buff;
-		g_buff = ft_strdup(buff);
-		if (g_tmp)
-		{
-			free(g_tmp);
-			g_tmp = NULL;
-		}
+		get_next_line_helper(buff);
 		if ((ch = ft_strchr(buff, '\n')))
 			ft_save(&save, &ch);
 		tmp = *line;
