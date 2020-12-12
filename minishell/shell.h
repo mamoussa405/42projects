@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbani <mbani@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 20:08:51 by mbani             #+#    #+#             */
-/*   Updated: 2020/12/11 19:34:05 by mbani            ###   ########.fr       */
+/*   Updated: 2020/12/12 18:28:27 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ t_pipe				*g_pipe_head;
 t_pipe				*g_cur;
 char				*g_tmp;
 char				**g_tmp_env;
+char				*g_buff;
+char				*g_buffer;
+char				*g_line;
 int					g_fd_in;
 int					g_fd_out;
 size_t				g_is_in;
@@ -69,7 +72,8 @@ size_t				g_is_sigint;
 size_t				g_is_cmd;
 size_t				g_is_sort;
 size_t				g_is_pipe;
-char				*g_buff;
+size_t				g_isseg;
+int 				g_len;
 static	int			g_x;
 t_env				*ft_lstnewenv(char *key, char *value);
 void				ft_lstadd_backenv(t_env **alst, t_env *new);
