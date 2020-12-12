@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbani <mbani@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 17:54:10 by mbani             #+#    #+#             */
-/*   Updated: 2020/12/12 18:35:21 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/12 20:30:15 by mbani            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	main_1(char **envp)
 int		main(int argc, char **argv, char **envp)
 {
 	int		ret;
-	// char	*line;
 
 	(void)argc;
 	(void)argv;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbani <mbani@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 20:08:51 by mbani             #+#    #+#             */
-/*   Updated: 2020/12/12 18:28:27 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/12 20:39:00 by mbani            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ size_t				g_is_cmd;
 size_t				g_is_sort;
 size_t				g_is_pipe;
 size_t				g_isseg;
-int 				g_len;
+int					g_len;
 static	int			g_x;
 t_env				*ft_lstnewenv(char *key, char *value);
 void				ft_lstadd_backenv(t_env **alst, t_env *new);
@@ -113,7 +113,7 @@ int					quoted_str_help(enum e_quotes **sngl,
 enum e_quotes	**dbl, char **tmp, int i);
 void				quote_removal_init(t_expan *quote, char **tmp,
 char **temp, int *i);
-void				quote_removal(char **str, enum e_type);
+void				quote_removal(char **str);
 char				*rm_spaces(char *line);
 enum e_type			operators_check(char *op);
 int					separators_check(char **tmp, int *i, char **op, int *j);
@@ -177,4 +177,6 @@ void				ft_lstclearnod(t_cmd *back, t_cmd *next);
 size_t				export_pipe_checker(void);
 void				quote_removal_free(char **str, char **tmp, char **temp);
 void				search_and_replace_help(char **str, int i, int j);
+void				delete_pre(void);
+void				free_g_buff(void);
 #endif

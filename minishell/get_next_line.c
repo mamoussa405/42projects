@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbani <mbani@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 21:52:51 by mbani             #+#    #+#             */
-/*   Updated: 2020/12/12 18:38:50 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/12 20:49:11 by mbani            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,31 +73,9 @@ void	ft_save(char **save, char **ch)
 	free(tmp);
 }
 
-void	delete_pre(void)
-{
-	char 	*tmp;
-	int		count;	
-	int		i;
-
-	count = 0;
-	i = 0;
-	tmp = ft_strdup(g_line);
-	free(g_line);
-	g_line = NULL;
-	while (count != g_len)
-	{
-		i++;
-		count++;
-	}
-	g_line = ft_strdup(tmp+i);
-	free(tmp);
-	tmp = NULL;
-}
-
 int		get_next_line(int fd, char **line)
 {
 	int			ret;
-	// char		*buff;
 	static char	*save;
 	char		*ch;
 	char		*tmp;
@@ -120,10 +98,6 @@ int		get_next_line(int fd, char **line)
 		*line = ft_strjoin_gnl(*line, g_buffer);
 		free(tmp);
 	}
-	if (g_buffer)
-	{
-		free(g_buffer);
-		g_buffer = NULL;
-	}
+	free_g_buff();
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: mbani <mbani@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:00:47 by mbani             #+#    #+#             */
-/*   Updated: 2020/12/12 11:23:25 by mbani            ###   ########.fr       */
+/*   Updated: 2020/12/12 20:31:02 by mbani            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,12 @@ void	quote_check(enum e_quotes *sngl, enum e_quotes *dbl, char *line, int i)
 	}
 }
 
-void	quote_removal(char **str, enum e_type type)
+void	quote_removal(char **str)
 {
 	t_expan quote;
 	int		i;
 	char	*tmp;
 	char	*temp;
-
-	(void)type;
 
 	quote_removal_init(&quote, &tmp, &temp, &i);
 	while (str[0][i])
@@ -102,10 +100,6 @@ void	quote_removal(char **str, enum e_type type)
 			i++;
 			continue ;
 		}
-		// else if (type == cmd && ((str[0][i] == '\'' && str[0][i + 1] == '\'') || (str[0][i] == '\"' && str[0][i + 1] == '\"')))
-		// {
-			
-		// }
 		else
 			join(&temp, &tmp);
 		i++;
