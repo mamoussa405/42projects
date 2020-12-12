@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbani <mbani@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:08:11 by mbani             #+#    #+#             */
-/*   Updated: 2020/12/11 13:12:01 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/11 17:58:51 by mbani            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,7 @@ int		search_and_replace(char **str, int i, int j)
 	ret[0] = 127;
 	if (str[0][i - j + 1] == '?')
 	{
-		str[0][i - j] = 127;
-		str[0][i - j + 1] = 127;
+		search_and_replace_help(str, i, j);
 		return (1);
 	}
 	while (tmp->next)

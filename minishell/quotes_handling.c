@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_handling.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbani <mbani@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:00:47 by mbani             #+#    #+#             */
-/*   Updated: 2020/12/11 13:15:20 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/12 11:23:25 by mbani            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,14 @@ void	quote_check(enum e_quotes *sngl, enum e_quotes *dbl, char *line, int i)
 	}
 }
 
-void	quote_removal(char **str)
+void	quote_removal(char **str, enum e_type type)
 {
 	t_expan quote;
 	int		i;
 	char	*tmp;
 	char	*temp;
+
+	(void)type;
 
 	quote_removal_init(&quote, &tmp, &temp, &i);
 	while (str[0][i])
@@ -100,11 +102,13 @@ void	quote_removal(char **str)
 			i++;
 			continue ;
 		}
+		// else if (type == cmd && ((str[0][i] == '\'' && str[0][i + 1] == '\'') || (str[0][i] == '\"' && str[0][i + 1] == '\"')))
+		// {
+			
+		// }
 		else
 			join(&temp, &tmp);
 		i++;
 	}
-	free(str[0]);
-	str[0] = tmp;
-	free(temp);
+	quote_removal_free(str, &tmp, &temp);
 }

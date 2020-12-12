@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbani <mbani@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 20:08:51 by mbani             #+#    #+#             */
-/*   Updated: 2020/12/11 16:40:55 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/11 19:34:05 by mbani            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int					quoted_str_help(enum e_quotes **sngl,
 enum e_quotes	**dbl, char **tmp, int i);
 void				quote_removal_init(t_expan *quote, char **tmp,
 char **temp, int *i);
-void				quote_removal(char **str);
+void				quote_removal(char **str, enum e_type);
 char				*rm_spaces(char *line);
 enum e_type			operators_check(char *op);
 int					separators_check(char **tmp, int *i, char **op, int *j);
@@ -171,4 +171,6 @@ void				line_parser(char *line);
 void				get_next_line_helper(char *buff);
 void				ft_lstclearnod(t_cmd *back, t_cmd *next);
 size_t				export_pipe_checker(void);
+void				quote_removal_free(char **str, char **tmp, char **temp);
+void				search_and_replace_help(char **str, int i, int j);
 #endif

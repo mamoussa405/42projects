@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbani <mbani@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 17:54:10 by mbani             #+#    #+#             */
-/*   Updated: 2020/12/11 12:21:17 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/12 11:44:50 by mbani            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ void	line_parser(char *line)
 	g_x = 0;
 	line = rm_spaces(line);
 	line_split(line);
-	if (line[0])
-		param_expansion(g_cmd_head);
 }
 
 void	sig_handler(int seg)
@@ -85,10 +83,7 @@ int		main(int argc, char **argv, char **envp)
 		g_tmp = NULL;
 		ret = get_next_line(0, &line);
 		if (!ret)
-		{
-			write(1, "exit", 4);
 			ft_exit(line, g_tmp_cmd);
-		}
 		line_parser(line);
 		main_3(line);
 		free(line);
