@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbani <mbani@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 21:52:51 by mbani             #+#    #+#             */
-/*   Updated: 2020/12/12 20:49:11 by mbani            ###   ########.fr       */
+/*   Updated: 2020/12/13 16:08:43 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ int		get_next_line(int fd, char **line)
 		if ((ret = read(fd, g_buffer, BUFFER_SIZE)) == 0 && !g_buff)
 			return (body_check(&save, &g_buffer));
 		g_buffer[ret] = '\0';
+		get_next_line_helper(g_buffer);
 		if (g_len > 0)
 			delete_pre();
-		get_next_line_helper(g_buffer);
 		if ((ch = ft_strchr(g_buffer, '\n')))
 			ft_save(&save, &ch);
 		tmp = *line;
