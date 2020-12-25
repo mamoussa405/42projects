@@ -6,12 +6,12 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 09:06:34 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/12/24 17:12:58 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/25 10:11:19 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
-#include "crapy.h"
+#include "crapy.hpp"
 
 void    search_contact(Contact contacts[], unsigned int contact_size)
 {

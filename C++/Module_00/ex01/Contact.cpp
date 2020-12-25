@@ -6,12 +6,12 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 14:50:02 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/12/24 17:13:26 by mamoussa         ###   ########.fr       */
+/*   Updated: 2020/12/25 10:11:36 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
-#include "crapy.h"
+#include "crapy.hpp"
 #include <unistd.h>
 
 void    Contact::display_first_info(void) const
