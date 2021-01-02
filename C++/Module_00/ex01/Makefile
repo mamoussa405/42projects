@@ -6,7 +6,7 @@
 #    By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/14 16:21:44 by mamoussa          #+#    #+#              #
-#    Updated: 2020/12/24 17:18:11 by mamoussa         ###   ########.fr        #
+#    Updated: 2021/01/01 16:50:23 by mamoussa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,4 +22,4 @@ clean:
 	rm $(NAME)
 fclean:	clean
 
-re: fclean all
+re: fclean all			

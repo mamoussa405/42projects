@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   crapy.h                                            :+:      :+:    :+:   */
+/*   crapy.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 09:08:50 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/12/24 16:43:20 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/01/01 12:44:48 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <iostream>
 # include <string>
 # include <iomanip>
+# include <ctype.h>
 # define BOLDGREEN   "\033[1m\033[32m"
 # define BOLDBLUE    "\033[1m\033[34m"
 # define CYAN    "\033[36m"

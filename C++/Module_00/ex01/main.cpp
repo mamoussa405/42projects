@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 14:35:51 by mamoussa          #+#    #+#             */
-/*   Updated: 2020/12/25 10:11:28 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/01/01 15:52:14 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int main(void)
         {
             if (i > 7)
             {
-                std::cout<<BOLDRED<<"The contact is full 🤷‍♂️\n";
+                std::cout<<BOLDRED<<"The contact is full 😄\n";
                 continue;
             }
             contacts[i].add_contact();
