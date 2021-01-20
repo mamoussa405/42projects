@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Pony.hpp                                           :+:      :+:    :+:   */
+/*   Logger.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/08 11:52:10 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/01/13 10:38:27 by mamoussa         ###   ########.fr       */
+/*   Created: 2021/01/12 15:34:57 by mamoussa          #+#    #+#             */
+/*   Updated: 2021/01/12 18:37:22 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _PONY_H
-# define _PONY_H
+#ifndef _LOGGER_H
+# define _LOGGER_H
 # include <iostream>
-class Pony{
+# include <fstream>
+
+class Logger{
     private:
-        unsigned int            _weight;
-        unsigned int            _heigth;
-        std::string const       _color;
-        std::string const       _type;
+        void        logToConsole(std::string const) const;
+        void        logToFile(std::string const);
+        std::string makeLogEntry(std::string const) const;
+        std::ofstream ofs;
     public:
-        Pony(void);
-        Pony(unsigned int, unsigned int, std::string const, std::string const);
-        ~Pony();
-        void getProperties(void) const;
+        Logger();
+        ~Logger();
+        void    log(std::string const &, std::string const &);
 };
-void ponyOnTheStack();
-void ponyOnTheHeap();
 #endif

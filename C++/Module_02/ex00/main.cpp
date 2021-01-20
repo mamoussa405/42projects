@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Human.hpp                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/12 11:33:41 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/01/12 11:34:44 by mamoussa         ###   ########.fr       */
+/*   Created: 2021/01/19 11:20:19 by mamoussa          #+#    #+#             */
+/*   Updated: 2021/01/20 11:24:45 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _HUMAN_HPP
-# define _HUMAN_HPP
-# include<iostream>
+#include <iostream>
+#include "Fixed.class.hpp"
 
-class Human {
-    private:
-        void meleeAttack(std::string const & target);
-        void rangedAttack(std::string const & target);
-        void intimidatingShout(std::string const & target);
-    public:
-        Human();
-        ~Human();
-        void action(std::string const & action_name, std::string const & target);
-};
-
-#endif
+int main( void ) {
+    Fixed a;
+    // fixed b( a );
+    // fixed c;
+    // c = b;
+    // std::cout << a.getrawbits() << std::endl;
+    // std::cout << b.getrawbits() << std::endl;
+    // std::cout << c.getrawbits() << std::endl;
+    return 0;
+}

@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 18:22:52 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/01/12 11:19:31 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/01/13 10:52:28 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int main(int argc, char **argv)
         ofs.open(res, std::ofstream::out);
         if(!ofs.is_open())
         {
+            ifs.close();
             std::cout<<"Can't open the file:"<<"res"<<std::endl;
             return 1;
         }
@@ -89,6 +90,8 @@ int main(int argc, char **argv)
             }
             else
             {
+                ifs.close();
+                ofs.close();
                 std::cout<<"Can't read from the file: "<<argv[1]<<std::endl;
                 return 1;
             }
@@ -96,10 +99,14 @@ int main(int argc, char **argv)
                 ofs<<line;
             else
             {
+                ifs.close();
+                ofs.close();
                 std::cout<<"Can't write to the file: "<<"res"<<std::endl;
                 return 1;
             }
         }
+        ifs.close();
+        ofs.close();
     }
     else
     {

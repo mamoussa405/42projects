@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Human.hpp                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/12 11:33:41 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/01/12 11:34:44 by mamoussa         ###   ########.fr       */
+/*   Created: 2021/01/12 15:42:08 by mamoussa          #+#    #+#             */
+/*   Updated: 2021/01/12 18:42:55 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _HUMAN_HPP
-# define _HUMAN_HPP
-# include<iostream>
+#include "Logger.hpp"
 
-class Human {
-    private:
-        void meleeAttack(std::string const & target);
-        void rangedAttack(std::string const & target);
-        void intimidatingShout(std::string const & target);
-    public:
-        Human();
-        ~Human();
-        void action(std::string const & action_name, std::string const & target);
-};
+int main(void)
+{
+    Logger inst;
 
-#endif
+    inst.log("logToFile", "hello world!");
+    return 0;
+}
