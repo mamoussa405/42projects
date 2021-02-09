@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 14:29:08 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/09 12:01:19 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/02/09 19:32:51 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,36 @@
 int main(void)
 {
     SuperTrap inst("mamoussa");
-    //FragTrap tests
-    // fragtrap fraginst("mamoussa");
-    // fraginst.rangedattack("konoha");
-    // fraginst.meleeattack("pain");
-    // fraginst.takedamage(200);
-    // std::cout<<"hp: "<<fraginst.gethitpoints()<<"\nep: "<<fraginst.getenergypoints()<<std::endl;
-    // fraginst.berepaired(15);
-    // std::cout<<"hp: "<<fraginst.gethitpoints()<<"\nep: "<<fraginst.getenergypoints()<<std::endl;
-    // fraginst.vaulthunter_dot_exe("akatsuki");
-    // std::cout<<"hp: "<<fraginst.gethitpoints()<<"\nep: "<<fraginst.getenergypoints()<<std::endl;
-    // fraginst.vaulthunter_dot_exe("akatsuki");
-    // std::cout<<"hp: "<<fraginst.gethitpoints()<<"\nep: "<<fraginst.getenergypoints()<<std::endl;
-    //ScavTrap tests
-    // scavtrap scavinst("mamoussa");
-    // scavinst.rangedattack("konoha");
-    // scavinst.meleeattack("pain");
-    // scavinst.takedamage(200);
-    // std::cout<<"hp: "<<scavinst.gethitpoints()<<"\nep: "<<scavinst.getenergypoints()<<std::endl;
-    // scavinst.berepaired(15);
-    // std::cout<<"hp: "<<scavinst.gethitpoints()<<"\nep: "<<scavinst.getenergypoints()<<std::endl;
-    // scavinst.challengenewcomer();
-    // scavinst.challengenewcomer();
-    // //ninjatrap tests
-    // ninjatrap ninjainst("mamoussa");
-    // ninjainst.ninjashoebox(fraginst);
-    // ninjainst.ninjashoebox(scavinst);
-    // ninjainst.ninjashoebox(ninjainst);
+    // FragTrap tests
+    FragTrap fraginst("mamoussa");
+    fraginst.rangedAttack("konoha");
+    fraginst.meleeAttack("pain");
+    fraginst.takeDamage(200);
+    std::cout<<"hp: "<<fraginst.getHitPoints()<<"\nep: "<<fraginst.getEnergyPoints()<<std::endl;
+    fraginst.beRepaired(15);
+    std::cout<<"hp: "<<fraginst.getHitPoints()<<"\nep: "<<fraginst.getEnergyPoints()<<std::endl;
+    fraginst.vaulthunter_dot_exe("akatsuki");
+    std::cout<<"hp: "<<fraginst.getHitPoints()<<"\nep: "<<fraginst.getEnergyPoints()<<std::endl;
+    fraginst.vaulthunter_dot_exe("akatsuki");
+    std::cout<<"hp: "<<fraginst.getHitPoints()<<"\nep: "<<fraginst.getEnergyPoints()<<std::endl;
+    // ScavTrap tests
+    ScavTrap scavinst("mamoussa");
+    scavinst.rangedAttack("konoha");
+    scavinst.meleeAttack("pain");
+    scavinst.takeDamage(200);
+    std::cout<<"hp: "<<scavinst.getHitPoints()<<"\nep: "<<scavinst.getEnergyPoints()<<std::endl;
+    scavinst.beRepaired(15);
+    std::cout<<"hp: "<<scavinst.getHitPoints()<<"\nep: "<<scavinst.getEnergyPoints()<<std::endl;
+    scavinst.challengeNewcomer();
+    scavinst.challengeNewcomer();
+    //NinjaTrap tests
+    NinjaTrap ninjainst("mamoussa");
+    ninjainst.ninjaShoebox(fraginst);
+    ninjainst.ninjaShoebox(scavinst);
+    ninjainst.ninjaShoebox(ninjainst);
+    //SuperTrap tests
+    SuperTrap inst("mamoussa");
+    inst.rangedAttack("Konoha");
+    inst.meleeAttack("Konoha");
     return 0;
 }
