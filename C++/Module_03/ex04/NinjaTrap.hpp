@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:49:16 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/09 10:42:14 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/02/09 11:07:44 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "FragTrap.hpp"
 # include "ScavTrap.hpp"
 
-class NinjaTrap: public ClapTrap{
+class NinjaTrap: virtual public ClapTrap{
     public:
         NinjaTrap(void);
         NinjaTrap(std::string const );

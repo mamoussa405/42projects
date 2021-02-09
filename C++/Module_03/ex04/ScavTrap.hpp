@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   NinjaTrap.hpp                                      :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/08 10:49:16 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/09 10:42:14 by mamoussa         ###   ########.fr       */
+/*   Created: 2021/02/07 15:56:25 by mamoussa          #+#    #+#             */
+/*   Updated: 2021/02/07 18:34:44 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NINJATRAP_HPP
-# define NINJATRAP_HPP
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
+# include <iostream>
 # include "ClapTrap.hpp"
-# include "FragTrap.hpp"
-# include "ScavTrap.hpp"
-
-class NinjaTrap: public ClapTrap{
+class ScavTrap: public ClapTrap{
     public:
-        NinjaTrap(void);
-        NinjaTrap(std::string const );
-        ~NinjaTrap(void);
-        NinjaTrap(NinjaTrap const &);
-        NinjaTrap& operator=(NinjaTrap const &);
+        ScavTrap(void);
+        ScavTrap(std::string const &);
+        ~ScavTrap(void);
+        ScavTrap(ScavTrap const &);
+        ScavTrap&   operator=(ScavTrap const &);
         void        rangedAttack(std::string const &) const;
         void        meleeAttack(std::string const &) const;
-        void        ninjaShoebox(FragTrap &) const;
-        void        ninjaShoebox(ScavTrap &) const;
-        void        ninjaShoebox(NinjaTrap &) const;
+        void        challengeNewcomer(void) const;
 };
 #endif
