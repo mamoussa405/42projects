@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 11:20:06 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/08 09:52:14 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/02/10 14:58:43 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ FragTrap::FragTrap(std::string const & name):ClapTrap(100,100,100,100,1,name,30,
     std::cout<<"FragTrap Constructor called"<<std::endl;
 };
 
-FragTrap::FragTrap(void){};
+FragTrap::FragTrap(void){
+    std::cout<<"FragTrap Constructor called"<<std::endl;
+};
+
 
 FragTrap::FragTrap(FragTrap const & inst){
     *this = inst;

@@ -6,13 +6,14 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 17:59:19 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/08 10:33:27 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/02/10 14:56:22 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap(void){
+	std::cout<<"ClapTrap constructor called"<<std::endl;
 };
 
 ClapTrap::~ClapTrap(void){

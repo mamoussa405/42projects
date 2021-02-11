@@ -6,13 +6,15 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:12:06 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/09 10:44:53 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/02/10 14:59:26 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "NinjaTrap.hpp"
 
-NinjaTrap::NinjaTrap(void){};
+NinjaTrap::NinjaTrap(void){
+    std::cout<<"NinjaTrap constructor called"<<std::endl;
+};
 
 NinjaTrap::NinjaTrap(std::string const name):ClapTrap(60,60,120,120,1,name,60,5,0){
     std::cout<<"NinjaTrap constructor called"<<std::endl;

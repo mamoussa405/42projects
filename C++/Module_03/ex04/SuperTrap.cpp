@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:54:42 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/09 19:25:10 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/02/10 14:57:12 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ SuperTrap::~SuperTrap(void){
     std::cout<<"SuperTrap destructor called"<<std::endl;
 }
 
-SuperTrap::SuperTrap(std::string name){
+SuperTrap::SuperTrap(std::string name) {
     std::cout<<"SuperTrap constructor called"<<std::endl;
     this->_HitPoints = 100;
     this->_MaxHitPoints = 100;

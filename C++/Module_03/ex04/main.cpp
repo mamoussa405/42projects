@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 14:29:08 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/09 19:32:51 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/02/10 15:05:15 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,11 @@ int main(void)
     ninjainst.ninjaShoebox(fraginst);
     ninjainst.ninjaShoebox(scavinst);
     ninjainst.ninjaShoebox(ninjainst);
-    //SuperTrap tests
-    SuperTrap inst("mamoussa");
-    inst.rangedAttack("Konoha");
-    inst.meleeAttack("Konoha");
+    // SuperTrap tests
+    std::cout<<"------------------"<<std::endl;
+    SuperTrap superInst("mamoussa");
+    superInst.rangedAttack("Konoha");
+    superInst.meleeAttack("Konoha");
+    superInst.vaulthunter_dot_exe("hello");
     return 0;
 }
