@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 15:21:50 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/13 15:45:04 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/02/15 11:15:15 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ AWeapon&    AWeapon::operator=(AWeapon const & inst)
     return *this;
 }
 
-std::string   AWeapon::getName(void) const{
+std::string  const AWeapon::getName(void) const{
     return this->_Name;
 }
 

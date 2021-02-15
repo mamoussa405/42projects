@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 16:57:10 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/15 11:09:56 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/02/15 14:20:35 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void    Character::recoverAP(void){
 void    Character::equip(AWeapon*   w_ptr)
 {
     this->_ptr = w_ptr;
-    this->_AP -= w_ptr->getAPCost();
 }
 
 void    Character::attack(Enemy*    e_ptr)
@@ -48,9 +47,13 @@ void    Character::attack(Enemy*    e_ptr)
         return;
     std::cout<<this->_Name<<" attacks "<<e_ptr->getType()<<" with a "<<this->_ptr->getName()<<std::endl;
     this->_ptr->attack();
+    this->_AP -= this->_ptr->getAPCost();
     e_ptr->takeDamage(this->_ptr->getDamage());
     if (e_ptr->getHP() <= 0)
+    {
         delete(e_ptr);
+        e_ptr = nullptr;
+    }
 }
 
 std::string const Character::getName(void) const
@@ -70,7 +73,7 @@ AWeapon*       Character::getWeapon(void) const
 
 std::ostream&   operator<<(std::ostream & out, Character const & inst)
 {
-    if (_ptr)
+    if (inst.getWeapon())
         out<<inst.getName()<<" has "<<inst.getAP()<<" AP and wields a "<<
         inst.getWeapon()->getName()<<std::endl;
     else

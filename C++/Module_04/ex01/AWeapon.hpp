@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 14:39:28 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/13 16:16:38 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/02/15 11:15:06 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ class   AWeapon{
         virtual ~AWeapon(void);
         AWeapon(AWeapon const &);
         AWeapon&        operator=(AWeapon const &);
-        std::string     getName(void) const;
-        int             getAPCost(void) const;
-        int             getDamage(void) const;
-        virtual void    attack(void) const = 0;
+        std::string const   getName(void) const;
+        int                 getAPCost(void) const;
+        int                 getDamage(void) const;
+        virtual void        attack(void) const = 0;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 16:19:15 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/13 16:26:00 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/02/15 11:16:04 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ Enemy&    Enemy::operator=(Enemy const & inst)
     return *this;
 }
 
-std::string Enemy::getType(void) const{
+std::string const Enemy::getType(void) const{
     return this->_Type;
 }
 

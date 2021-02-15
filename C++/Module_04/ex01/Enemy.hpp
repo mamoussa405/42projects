@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 16:15:07 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/13 16:20:52 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/02/15 11:15:54 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ class Enemy
         Enemy(Enemy const &);
         virtual ~Enemy(void);
         Enemy&          operator=(Enemy const &);
-        std::string     getType(void) const;
-        int             getHP(void) const;
-        virtual void    takeDamage(int);
+        std::string     const   getType(void) const;
+        int                     getHP(void) const;
+        virtual void            takeDamage(int);
 };
 
 #endif
