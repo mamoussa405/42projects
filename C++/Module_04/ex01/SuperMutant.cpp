@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 16:33:35 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/13 16:41:48 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/02/15 15:13:08 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ SuperMutant::~SuperMutant(void){
     std::cout<<"Aaargh..."<<std::endl;
 }
 
-void    SuperMutant::takeDamage(void)
+void    SuperMutant::takeDamage(int amount)
 {
-    Enemy::takeDamage(3);
+    amount -= 3;
+    Enemy::takeDamage(amount);
 }

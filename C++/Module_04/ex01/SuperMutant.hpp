@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 16:30:09 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/13 16:41:42 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/02/15 15:11:14 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class   SuperMutant: public Enemy
     public:
         SuperMutant(void);
         ~SuperMutant(void);
-        void    takeDamage(void);
+        void    takeDamage(int);
 };
 
 #endif
