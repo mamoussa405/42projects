@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   SuperMutant.cpp                                    :+:      :+:    :+:   */
+/*   TacticalMarine.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/13 16:33:35 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/15 15:15:30 by mamoussa         ###   ########.fr       */
+/*   Created: 2021/02/17 11:49:27 by mamoussa          #+#    #+#             */
+/*   Updated: 2021/02/17 11:52:35 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "SuperMutant.hpp"
+#ifndef TACTICALMARINE__HPP
+# define TACTICALMARINE__HPP
+# include "ISpaceMarine.hpp"
 
-SuperMutant::SuperMutant(void): Enemy(170, "Super Mutant"){
-    std::cout<<"Gaaah. Me want smash heads!"<<std::endl;
-}
-
-SuperMutant::~SuperMutant(void){
-    std::cout<<"Aaargh..."<<std::endl;
-}
-
-void    SuperMutant::takeDamage(int amount)
+class  TacticalMarine: public ISpaceMarine
 {
-    amount -= 3;
-    Enemy::takeDamage(amount);
-}
+    public:
+        TacticalMarine(void);
+        ~TacticalMarine(void);
+        ISpaceMarine* clone() const;
+        void battleCry() const;
+        void rangedAttack() const;
+        void meleeAttack() const;
+};
+#endif

@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   SuperMutant.cpp                                    :+:      :+:    :+:   */
+/*   ISquad.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/13 16:33:35 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/15 15:15:30 by mamoussa         ###   ########.fr       */
+/*   Created: 2021/02/16 10:54:04 by mamoussa          #+#    #+#             */
+/*   Updated: 2021/02/16 15:05:22 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "SuperMutant.hpp"
-
-SuperMutant::SuperMutant(void): Enemy(170, "Super Mutant"){
-    std::cout<<"Gaaah. Me want smash heads!"<<std::endl;
-}
-
-SuperMutant::~SuperMutant(void){
-    std::cout<<"Aaargh..."<<std::endl;
-}
-
-void    SuperMutant::takeDamage(int amount)
+#ifndef ISQUAD__HPP
+# define ISQUAD__HPP
+# include <iostream>
+# include "ISpaceMarine.hpp"
+class ISquad
 {
-    amount -= 3;
-    Enemy::takeDamage(amount);
-}
+    public:
+        virtual ~ISquad() {}
+        virtual int getCount() const = 0;
+        virtual ISpaceMarine* getUnit(int) const = 0;
+        virtual int push(ISpaceMarine*) = 0;
+};
+#endif
