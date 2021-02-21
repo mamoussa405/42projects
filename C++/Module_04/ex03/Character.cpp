@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 11:27:44 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/20 15:19:46 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/02/21 14:56:30 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ Character&  Character::operator=(Character const & inst)
     }
     for (size_t i = 0; i < inst._index; ++i)
     {
-        this->_inv[i] = new Cure;
+        this->_inv[i] = inst._inv[i]->clone();
         *(this->_inv[i]) = *(inst._inv[i]);
     }
     this->_index = inst._index;
@@ -60,7 +60,8 @@ void                Character::use(int idx, ICharacter& target)
 {
     if (idx >= 0 && idx < (int)this->_index)
     {
-        this->_inv[idx]->use(target);
+        if (this->_inv[idx])
+            this->_inv[idx]->use(target);
     }
 }
 
@@ -68,6 +69,7 @@ void               Character::unequip(int idx)
 {
     if (idx >= 0 && idx < (int)this->_index)
     {
-        this->_inv[idx] = nullptr;
+        if (this->_inv[idx])
+            this->_inv[idx] = nullptr;
     }
 }

@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 12:06:49 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/12 16:55:57 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/02/21 16:58:41 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class Peon : public Victim{
         Peon(void);
         Peon(std::string const);
         Peon(Peon const &);
-        ~Peon(void);
+        virtual ~Peon(void);
         void    getPolymorphed(void) const;
 };
 
@@ -28,7 +28,7 @@ class Mamoussa: public Victim{
         Mamoussa(void);
         Mamoussa(std::string const);
         Mamoussa(Mamoussa const &);
-        ~Mamoussa(void);
+        virtual ~Mamoussa(void);
         void    getPolymorphed(void) const;
 };
 #endif

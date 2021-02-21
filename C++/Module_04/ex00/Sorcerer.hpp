@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 15:47:02 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/12 12:24:42 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/02/21 16:58:50 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class   Sorcerer{
         Sorcerer(void);
     public:
         Sorcerer(std::string const, std::string const);
-        ~Sorcerer(void);
+        virtual ~Sorcerer(void);
         Sorcerer(Sorcerer const &);
         Sorcerer&   operator=(Sorcerer const &);
         std::string getName(void) const;

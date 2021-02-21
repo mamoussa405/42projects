@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 16:42:43 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/13 16:46:46 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/02/21 17:43:22 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ class   RadScorpion: public Enemy
 {
     public:
         RadScorpion(void);
-        ~RadScorpion(void);
+        virtual ~RadScorpion(void);
 };
 #endif

@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 18:23:38 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/18 14:54:24 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/02/21 17:53:45 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class Cure: public AMateria
 {
     public:
         Cure(void);
-        ~Cure(void);
+        virtual ~Cure(void);
         AMateria*   clone(void) const;
         void        use(ICharacter&);
 };
