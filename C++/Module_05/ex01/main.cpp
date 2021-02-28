@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 11:30:05 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/02/26 16:53:08 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/02/26 16:59:00 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int main(void)
 {
-    Bureaucrat *br = nullptr;
+    Bureaucrat  *br = nullptr;
     Form        *fr =  nullptr;
     try
     {
