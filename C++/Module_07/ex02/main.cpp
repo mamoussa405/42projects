@@ -6,12 +6,13 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 18:09:01 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/03/04 19:23:57 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/03/05 09:59:37 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
-#include "Array.cpp"
+#include "templates.hpp"
+
 int main(void)
 {
     Array<int> arr(6);

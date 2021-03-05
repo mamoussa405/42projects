@@ -6,7 +6,7 @@
 #    By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/02 12:39:47 by mamoussa          #+#    #+#              #
-#    Updated: 2021/03/04 19:25:04 by mamoussa         ###   ########.fr        #
+#    Updated: 2021/03/05 09:57:34 by mamoussa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ COMPILER = clang++
 
 FLAGS = -Wall -Wextra -Werror
 
-FILES = main.cpp Array.cpp
+FILES = main.cpp
 
 all: $(NAME)
 
