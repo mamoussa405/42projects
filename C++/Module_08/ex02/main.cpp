@@ -6,14 +6,17 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 10:39:24 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/03/07 12:34:57 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/03/09 16:02:33 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mutantstack.hpp"
+#include "mutantstack.cpp"
+
 int main()
 {
-    MutantStack<int> mstack;
+    MutantStack<int> mstack; 
+
     mstack.push(5);
     mstack.push(17);
     std::cout << mstack.top() << std::endl;
@@ -24,10 +27,44 @@ int main()
     mstack.push(737); //[...] mstack.push(0);
     MutantStack<int>::iterator it = mstack.begin();
     MutantStack<int>::iterator ite = mstack.end();
+    MutantStack<int>::reverse_iterator rit = mstack.rbegin();
+    MutantStack<int>::reverse_iterator rite = mstack.rend();
     ++it;
     --it;
-    while (it != ite) {
+    std::cout << "------------iterator-------------" << std::endl;
+    while (it != ite) 
+    {
         std::cout << *it << std::endl;
-    ++it; }
-    std::stack<int> s(mstack); return 0;
+        ++it; 
+    }
+    std::cout << "---------reverse iterator-----------" << std::endl;
+    for (; rit != rite; rit++)
+        std::cout << *rit << std::endl;
+    std::stack<int> s(mstack); 
+    std::cout << "---------char Stack--------------" << std::endl;
+    MutantStack<char>   charStack, char2Stack;
+    charStack.push('a');
+    charStack.push('b');
+    charStack.push('c');
+    MutantStack<char>::iterator cit = charStack.begin();
+    MutantStack<char>::iterator cite = charStack.end();
+    for (; cit != cite; cit++)
+        std::cout << *cit << std::endl;
+    charStack.pop();
+    std::cout << charStack.top() << std::endl;
+    std::cout << charStack.size() << std::endl;
+    std::cout << charStack.empty() << std::endl;
+    std::cout << "------- char2Stack -------"  << std::endl;
+    char2Stack = charStack;
+    MutantStack<char>::iterator cit2 = char2Stack.begin();
+    MutantStack<char>::iterator cite2 = char2Stack.end();
+    for (; cit2 != cite2; cit2++)
+        std::cout << *cit2 << std::endl;
+    std::cout << "--------- copy Stack-------" << std::endl;
+    MutantStack<char> copyStack(charStack);
+    MutantStack<char>::iterator citc = copyStack.begin();
+    MutantStack<char>::iterator citec = copyStack.end();
+    for (; citc != citec; citc++)
+        std::cout << *citc << std::endl;
+    return 0;
 }

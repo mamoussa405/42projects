@@ -6,7 +6,7 @@
 /*   By: mamoussa <mamoussa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 10:02:43 by mamoussa          #+#    #+#             */
-/*   Updated: 2021/03/07 10:40:42 by mamoussa         ###   ########.fr       */
+/*   Updated: 2021/03/09 16:02:31 by mamoussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,44 +25,25 @@ template<typename T>
 MutantStack<T>::~MutantStack(void){}
 
 template<typename T>
-MutantStack<T>& MutantStack<T>::operator=(MutantStack const& inst)
+typename MutantStack<T>::iterator MutantStack<T>::begin(void)
 {
-    this->_v = inst._v;
-    return *this;
+    return (this->c.begin());
 }
 
 template<typename T>
-void MutantStack<T>::push(T n)
+typename MutantStack<T>::iterator MutantStack<T>::end(void)
 {
-    this->_v.push_back(n);
+    return (this->c.end());
 }
 
 template<typename T>
-void MutantStack<T>::pop(void)
+typename MutantStack<T>::reverse_iterator MutantStack<T>::rbegin(void)
 {
-    this->_v.pop_back(n);
+    return (this->c.rbegin());
 }
 
 template<typename T>
-T MutantStack<T>::top(void)
+typename MutantStack<T>::reverse_iterator MutantStack<T>::rend(void)
 {
-    this->_v.back();
-}
-
-template<typename T>
-size_t MutantStack<T>::size(void) const
-{
-    return this->_v.size();
-}
-
-template<typename T>
-typename std::vector<T>::iterator& MutantStack<T>::begin(void) const
-{
-    this->_v.begin();
-}
-
-template<typename T>
-typename std::vector<T>::iterator& MutantStack<T>::end(void) const
-{
-    this->_v.end();
+    return (this->c.rend());
 }
